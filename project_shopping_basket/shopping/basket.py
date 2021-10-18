@@ -1,4 +1,4 @@
-from product import Product
+from shopping.product import Product
 
 class ShoppingBasket:
 
