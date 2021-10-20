@@ -27,16 +27,16 @@ class TestShoppingBasketWithOneProduct(unittest.TestCase):
         cls.basket = ShoppingBasket().add_product('milk', 3.0)
 
     def test_size_of_basket_should_be_one(self):
-        pass
+        self.assertEqual(len(self.basket), 1)
 
     def test_total_amount_should_have_tax(self):
-        pass
+        self.assertAlmostEqual(self.basket.total(), 3.63)
 
     def test_getting_product(self):
-        pass
+        self.assertEqual("milk", self.basket.get_product(0).name)
 
     def test_getting_product_out_of_range_should_raise_error(self):
-        pass
+        self.assertRaises(IndexError, self.basket.get_product, 1)
 
 
 class TestShoppingBasketWithTwoProducts(unittest.TestCase):
@@ -49,15 +49,17 @@ class TestShoppingBasketWithTwoProducts(unittest.TestCase):
             .add_product('water', 2.0)
 
     def test_size_of_basket_should_be_two(self):
-        pass
+        self.assertEqual(len(self.basket), 2)
 
     def test_order_of_products(self):
-        pass
+        self.assertEqual("milk", self.basket.get_product(0).name)
+        self.assertEqual(3.0, self.basket.get_product(0).price)
+        self.assertEqual("water", self.basket.get_product(1).name)
+        self.assertEqual(2.0, self.basket.get_product(1).price)
 
     def test_total_amount_should_have_tax(self):
-        pass
+        self.assertAlmostEqual(self.basket.total(), 6.05)
 
     def test_getting_product_out_of_range_should_raise_error(self):
-        pass
-
+        self.assertRaises(IndexError, self.basket.get_product, 2)
 
