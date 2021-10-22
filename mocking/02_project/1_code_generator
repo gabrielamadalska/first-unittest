@@ -1,0 +1,24 @@
+import random
+from unittest.mock import patch
+
+def get_code():
+    rand_int = random.randint(0,9)
+    return f'XC-{rand_int}'
+
+with patch('random.randint') as mock_random:
+    mock_random.return_value = 7
+    print(get_code())
+
+with patch('random.randint') as mock_random:
+    mock_random.return_value = 8
+    print(get_code())
+
+
+@patch('random.randint')
+def test_get_code_7(mock_random):
+    mock_random.return_value = 7
+    code = get_code()
+    assert code == "XC-7"
+
+
+test_get_code_7()
